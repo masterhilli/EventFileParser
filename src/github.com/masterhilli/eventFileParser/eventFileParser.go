@@ -181,9 +181,7 @@ func (this EventInformation) isFileCreationSameAsEventTime(event string) {
 }
 
 func (this EventInformation) getMinDaysBetweenFileCreationAndEventTime() int {
-	fileCreationDays := getDaysAsInt(this.FileCreationTime)
-	eventDays := getDaysAsInt(this.EventTime)
-	return fileCreationDays-eventDays
+	return int(this.FileCreationTime.Sub(this.EventTime).Hours()/24)
 }
 
 func getDaysAsInt(date time.Time) int {
